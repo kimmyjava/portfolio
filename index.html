@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kimberly Java — AI Automation Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a26;
+    --accent: #25d366;
+    --accent2: #128c7e;
+    --gold: #f0c040;
+    --text: #f0ede8;
+    --muted: #888899;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* Noise texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(37,211,102,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 8vw, 100px);
+    font-weight: 900;
+    line-height: 0.95;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero h1 span {
+    color: var(--accent);
+    display: block;
+  }
+
+  .hero-desc {
+    max-width: 520px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .btn {
+    padding: 14px 28px;
+    border-radius: 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+    border: none;
+  }
+  .btn-primary:hover { background: #1db954; transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 60px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0;
+    animation: fadeUp 0.8s 1.2s forwards;
+  }
+
+  /* Section */
+  section {
+    padding: 100px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 48px;
+  }
+
+  /* Cover Letter */
+  .cover-letter {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover-letter::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 300px;
+    color: rgba(37,211,102,0.04);
+    position: absolute;
+    top: -60px;
+    left: 20px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .cover-letter p {
+    font-size: 16px;
+    line-height: 1.85;
+    color: #ccc;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .cover-letter p:last-child { margin-bottom: 0; }
+
+  .cover-letter strong { color: var(--text); font-weight: 500; }
+
+  .cover-letter .highlight {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .cover-letter .signature {
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .cover-letter .signature .name {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--text);
+  }
+
+  .cover-letter .signature .role {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  /* Workflow Demo */
+  .workflow-section {
+    background: var(--bg);
+    padding: 100px 60px;
+    border-top: 1px solid var(--border);
+  }
+
+  .workflow-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .workflow-diagram {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 48px;
+    overflow-x: auto;
+  }
+
+  .flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: nowrap;
+    min-width: 800px;
+  }
+
+  .flow-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .node-box {
+    width: 110px;
+    padding: 14px 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+    border: 1px solid;
+    transition: transform 0.2s;
+    cursor: default;
+  }
+
+  .node-box:hover { transform: translateY(-4px); }
+
+  .node-webhook { background: rgba(37,211,102,0.1); border-color: var(--accent); color: var(--accent); }
+  .node-process { background: rgba(99,102,241,0.1); border-color: #6366f1; color: #a5b4fc; }
+  .node-ai { background: rgba(240,192,64,0.1); border-color: var(--gold); color: var(--gold); }
+  .node-send { background: rgba(37,211,102,0.1); border-color: var(--accent); color: var(--accent); }
+  .node-human { background: rgba(239,68,68,0.1); border-color: #ef4444; color: #fca5a5; }
+  .node-stop { background: rgba(107,114,128,0.1); border-color: #6b7280; color: #9ca3af; }
+
+  .node-icon { font-size: 22px; margin-bottom: 4px; }
+
+  .flow-arrow {
+    color: var(--muted);
+    font-size: 20px;
+    flex-shrink: 0;
+    padding: 0 6px;
+  }
+
+  .flow-branch {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .branch-label {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  .branch-true { background: rgba(239,68,68,0.15); color: #fca5a5; }
+  .branch-false { background: rgba(37,211,102,0.15); color: var(--accent); }
+
+  /* Features Grid */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .feature-card:hover {
+    border-color: rgba(37,211,102,0.3);
+    transform: translateY(-4px);
+  }
+
+  .feature-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .feature-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  .feature-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  /* Tech Stack */
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .tech-badge {
+    padding: 8px 18px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+
+  .tech-badge:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Chat Demo */
+  .chat-demo {
+    background: #111b21;
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 420px;
+    border: 1px solid var(--border);
+  }
+
+  .chat-header {
+    background: #202c33;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .chat-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .chat-name { font-size: 15px; font-weight: 500; }
+  .chat-status { font-size: 12px; color: var(--accent); }
+
+  .chat-messages {
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #0b141a;
+    min-height: 300px;
+  }
+
+  .msg {
+    max-width: 80%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .msg-bot {
+    background: #202c33;
+    color: #e9edef;
+    align-self: flex-start;
+    border-bottom-left-radius: 3px;
+  }
+
+  .msg-user {
+    background: #005c4b;
+    color: #e9edef;
+    align-self: flex-end;
+    border-bottom-right-radius: 3px;
+  }
+
+  .msg-time {
+    font-size: 10px;
+    color: #8696a0;
+    margin-top: 4px;
+    text-align: right;
+  }
+
+  /* Demo + desc side by side */
+  .demo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    .demo-grid { grid-template-columns: 1fr; }
+    section, .workflow-section { padding: 60px 24px; }
+    .hero { padding: 80px 24px; }
+    .cover-letter { padding: 32px 24px; }
+    .flow { min-width: 600px; }
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--text);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-label">AI Automation Portfolio</p>
+  <h1>Kimberly<span>Java.</span></h1>
+  <p class="hero-desc">I build practical AI-powered automation workflows that solve real business problems — faster responses, smarter routing, and seamless human handoff.</p>
+  <div class="hero-cta">
+    <a href="#project" class="btn btn-primary">↓ View My Project</a>
+    <a href="#cover-letter" class="btn btn-outline">Read Cover Letter</a>
+  </div>
+  <p class="scroll-hint">Scroll to explore</p>
+</div>
+
+<!-- COVER LETTER -->
+<section id="cover-letter">
+  <p class="section-label">Cover Letter</p>
+  <h2 class="section-title">Why hire me.</h2>
+  <div class="cover-letter fade-in">
+    <p>To Whom It May Concern,</p>
+    <p>
+      I'm <strong>Kimberly Java</strong>, an AI automation specialist with hands-on experience building practical, production-ready workflows that solve real business problems. I don't just talk about AI — I build with it.
+    </p>
+    <p>
+      My most recent project is a <span class="highlight">WhatsApp AI Customer Service Bot</span> built entirely on n8n, greenAPI, and the Groq AI API. The bot receives incoming customer messages, processes them through an AI agent with conversation memory, generates intelligent context-aware replies, and automatically escalates complex complaints to a human agent — all in real time.
+    </p>
+    <p>
+      This project demonstrates my ability to <strong>design end-to-end automation workflows</strong>, integrate third-party APIs, implement intelligent routing logic, and build systems that are production-ready and maintainable. I built this from scratch, debugged every issue, and iterated until it worked flawlessly.
+    </p>
+    <p>
+      Beyond technical execution, I understand that AI tools are only valuable when they produce <strong>real business results</strong>. I focus on usefulness, reliability, and building systems that teams can maintain and extend long after handoff.
+    </p>
+    <p>
+      I'm a fast learner, highly organized, and comfortable working with ambiguity. I thrive in environments that value execution over theory, and I'm excited to bring that mindset to your team.
+    </p>
+    <p>I'd love the opportunity to contribute to your organization. Please find my project demo below.</p>
+    <div class="signature">
+      <div class="name">Kimberly Java</div>
+      <div class="role">AI Automation Specialist</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT -->
+<div class="workflow-section" id="project">
+  <div class="workflow-container">
+    <p class="section-label">Featured Project</p>
+    <h2 class="section-title fade-in">WhatsApp AI<br>Customer Service Bot</h2>
+
+    <div class="demo-grid fade-in">
+      <!-- Chat Demo -->
+      <div class="chat-demo">
+        <div class="chat-header">
+          <div class="chat-avatar">🤖</div>
+          <div>
+            <div class="chat-name">AI Support Bot</div>
+            <div class="chat-status">● Online</div>
+          </div>
+        </div>
+        <div class="chat-messages">
+          <div class="msg msg-user">Hi<div class="msg-time">11:40</div></div>
+          <div class="msg msg-bot">Hello! Welcome to our store. How can I assist you with your order or any questions today?<div class="msg-time">11:40</div></div>
+          <div class="msg msg-user">I wanna ask about my order, it doesn't function<div class="msg-time">11:41</div></div>
+          <div class="msg msg-bot">Sorry to hear that! Can you provide your order number so I can look into the issue? I can check the status and assist with repairs or replacements.<div class="msg-time">11:41</div></div>
+          <div class="msg msg-user">I don't think you can help me<div class="msg-time">11:41</div></div>
+          <div class="msg msg-bot">Let me connect you with a human agent who can better assist you. They'll provide a more personalized solution. Would you like me to transfer you now?<div class="msg-time">11:41</div></div>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div>
+        <p style="font-size:16px; line-height:1.8; color: #ccc; margin-bottom: 24px;">
+          A fully functional AI-powered WhatsApp customer service bot that handles real conversations, remembers context, and escalates to humans when needed.
+        </p>
+        <div class="features" style="grid-template-columns: 1fr; margin-top: 0; gap: 16px;">
+          <div class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <div class="feature-title">Conversation Memory</div>
+            <div class="feature-desc">Remembers past messages per customer using Session-based Simple Memory — no repeated greetings.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔀</div>
+            <div class="feature-title">Smart Human Escalation</div>
+            <div class="feature-desc">Automatically routes complex complaints to a human agent when the AI cannot confidently resolve the issue.</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-title">Real-time Responses</div>
+            <div class="feature-desc">Powered by Groq's ultra-fast LLM API — replies in seconds, not minutes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Workflow Diagram -->
+    <div style="margin-top: 60px;">
+      <p class="section-label">Workflow Architecture</p>
+      <div class="workflow-diagram fade-in" style="margin-top: 16px;">
+        <div class="flow">
+          <div class="flow-node">
+            <div class="node-icon">📩</div>
+            <div class="node-box node-webhook">Webhook<br>Receive Message</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">
+            <div class="node-icon">↩️</div>
+            <div class="node-box node-process">Respond to<br>greenAPI</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">
+            <div class="node-icon">⚙️</div>
+            <div class="node-box node-process">Extract<br>Message Data</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">
+            <div class="node-icon">🔀</div>
+            <div class="node-box node-process">IF — Human<br>Agent Flag?</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-branch">
+            <div>
+              <span class="branch-label branch-true">TRUE</span>
+              <div style="display:flex; align-items:center; gap:8px; margin-top:8px;">
+                <div class="node-box node-stop" style="width:90px; font-size:10px;">Stop — Human<br>Handles This</div>
+              </div>
+            </div>
+            <div>
+              <span class="branch-label branch-false">FALSE</span>
+              <div style="display:flex; align-items:center; gap:8px; margin-top:8px;">
+                <div class="node-box node-ai" style="width:90px; font-size:10px;">🤖 AI Agent<br>+ Memory</div>
+                <span style="color:var(--muted);">→</span>
+                <div class="node-box node-send" style="width:90px; font-size:10px;">📤 Send Reply<br>via greenAPI</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech Stack -->
+    <div style="margin-top: 60px;" class="fade-in">
+      <p class="section-label">Tech Stack</p>
+      <div class="tech-stack">
+        <span class="tech-badge">n8n</span>
+        <span class="tech-badge">Groq API</span>
+        <span class="tech-badge">greenAPI</span>
+        <span class="tech-badge">WhatsApp</span>
+        <span class="tech-badge">AI Agent Node</span>
+        <span class="tech-badge">Simple Memory</span>
+        <span class="tech-badge">Webhook</span>
+        <span class="tech-badge">REST API</span>
+        <span class="tech-badge">JSON</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREENING TASK -->
+<section id="screening">
+  <p class="section-label">Screening Task Response</p>
+  <h2 class="section-title fade-in">Business Problem<br>& AI Solution</h2>
+  <div class="cover-letter fade-in">
+    <p><strong>1. Business Problem</strong><br>
+    E-commerce customer service teams struggle to respond to WhatsApp inquiries quickly and consistently, leading to delayed responses, missed follow-ups, and frustrated customers — especially during peak hours.</p>
+    <p><strong>2. How I Used AI to Improve It</strong><br>
+    I built an automated WhatsApp customer service bot that handles common inquiries instantly using a Groq-powered AI agent with conversation memory, while routing complex complaints to a human agent when needed.</p>
+    <p><strong>3. Tools Used</strong><br>
+    <span class="highlight">n8n</span> for workflow automation — <span class="highlight">Groq API</span> for AI responses — <span class="highlight">greenAPI</span> for WhatsApp integration — <span class="highlight">Simple Memory</span> for per-customer conversation history.</p>
+    <p><strong>4. Workflow</strong><br>
+    Incoming WhatsApp message → Extract customer message + chatId → AI Agent generates context-aware reply → IF human flag is set → route to human agent → ELSE → send AI reply back via WhatsApp.</p>
+    <p><strong>5. Risk & Mitigation</strong><br>
+    The AI may occasionally give incorrect or misleading product information. To handle this, I built a human escalation node — if the AI detects it cannot confidently answer, it flags the conversation and routes it to a human agent automatically.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Kimberly Java</div>
+  <div>AI Automation Specialist · Built with n8n + Groq</div>
+</footer>
+
+<script>
+  // Intersection observer for fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
