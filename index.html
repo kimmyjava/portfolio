@@ -13,6 +13,7 @@
     --accent: #25d366;
     --accent2: #128c7e;
     --gold: #f0c040;
+    --pinecone: #6c63ff;
     --text: #f0ede8;
     --muted: #888899;
     --border: rgba(255,255,255,0.07);
@@ -28,7 +29,6 @@
     overflow-x: hidden;
   }
 
-  /* Noise texture overlay */
   body::before {
     content: '';
     position: fixed;
@@ -81,13 +81,10 @@
     animation: fadeUp 0.8s 0.4s forwards;
   }
 
-  .hero h1 span {
-    color: var(--accent);
-    display: block;
-  }
+  .hero h1 span { color: var(--accent); display: block; }
 
   .hero-desc {
-    max-width: 520px;
+    max-width: 560px;
     font-size: 17px;
     line-height: 1.7;
     color: var(--muted);
@@ -118,18 +115,9 @@
     transition: all 0.2s;
   }
 
-  .btn-primary {
-    background: var(--accent);
-    color: #000;
-    border: none;
-  }
+  .btn-primary { background: var(--accent); color: #000; border: none; }
   .btn-primary:hover { background: #1db954; transform: translateY(-2px); }
-
-  .btn-outline {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border);
-  }
+  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
   .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
   .scroll-hint {
@@ -144,7 +132,7 @@
     animation: fadeUp 0.8s 1.2s forwards;
   }
 
-  /* Section */
+  /* Sections */
   section {
     padding: 100px 60px;
     max-width: 1100px;
@@ -198,13 +186,8 @@
   }
 
   .cover-letter p:last-child { margin-bottom: 0; }
-
   .cover-letter strong { color: var(--text); font-weight: 500; }
-
-  .cover-letter .highlight {
-    color: var(--accent);
-    font-weight: 500;
-  }
+  .cover-letter .highlight { color: var(--accent); font-weight: 500; }
 
   .cover-letter .signature {
     margin-top: 40px;
@@ -226,17 +209,14 @@
     margin-top: 4px;
   }
 
-  /* Workflow Demo */
+  /* Workflow Section */
   .workflow-section {
     background: var(--bg);
     padding: 100px 60px;
     border-top: 1px solid var(--border);
   }
 
-  .workflow-container {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
+  .workflow-container { max-width: 1100px; margin: 0 auto; }
 
   .workflow-diagram {
     background: var(--surface);
@@ -251,7 +231,7 @@
     align-items: center;
     gap: 0;
     flex-wrap: nowrap;
-    min-width: 800px;
+    min-width: 900px;
   }
 
   .flow-node {
@@ -277,22 +257,16 @@
   }
 
   .node-box:hover { transform: translateY(-4px); }
-
   .node-webhook { background: rgba(37,211,102,0.1); border-color: var(--accent); color: var(--accent); }
   .node-process { background: rgba(99,102,241,0.1); border-color: #6366f1; color: #a5b4fc; }
   .node-ai { background: rgba(240,192,64,0.1); border-color: var(--gold); color: var(--gold); }
   .node-send { background: rgba(37,211,102,0.1); border-color: var(--accent); color: var(--accent); }
-  .node-human { background: rgba(239,68,68,0.1); border-color: #ef4444; color: #fca5a5; }
+  .node-rag { background: rgba(108,99,255,0.1); border-color: var(--pinecone); color: #a5a0ff; }
   .node-stop { background: rgba(107,114,128,0.1); border-color: #6b7280; color: #9ca3af; }
 
   .node-icon { font-size: 22px; margin-bottom: 4px; }
 
-  .flow-arrow {
-    color: var(--muted);
-    font-size: 20px;
-    flex-shrink: 0;
-    padding: 0 6px;
-  }
+  .flow-arrow { color: var(--muted); font-size: 20px; flex-shrink: 0; padding: 0 6px; }
 
   .flow-branch {
     display: flex;
@@ -313,7 +287,71 @@
   .branch-true { background: rgba(239,68,68,0.15); color: #fca5a5; }
   .branch-false { background: rgba(37,211,102,0.15); color: var(--accent); }
 
-  /* Features Grid */
+  /* RAG Section */
+  .rag-section {
+    background: var(--surface2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 100px 60px;
+  }
+
+  .rag-container { max-width: 1100px; margin: 0 auto; }
+
+  .rag-flow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .rag-step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    position: relative;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .rag-step:hover {
+    border-color: rgba(108,99,255,0.4);
+    transform: translateY(-4px);
+  }
+
+  .rag-step-num {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--pinecone);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .rag-step-icon { font-size: 28px; margin-bottom: 12px; }
+
+  .rag-step-title {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .rag-step-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .rag-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pinecone);
+    font-size: 24px;
+    margin-top: 60px;
+  }
+
+  /* Features */
   .features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -334,10 +372,7 @@
     transform: translateY(-4px);
   }
 
-  .feature-icon {
-    font-size: 32px;
-    margin-bottom: 16px;
-  }
+  .feature-icon { font-size: 32px; margin-bottom: 16px; }
 
   .feature-title {
     font-size: 16px;
@@ -346,19 +381,10 @@
     color: var(--text);
   }
 
-  .feature-desc {
-    font-size: 14px;
-    line-height: 1.7;
-    color: var(--muted);
-  }
+  .feature-desc { font-size: 14px; line-height: 1.7; color: var(--muted); }
 
   /* Tech Stack */
-  .tech-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 32px;
-  }
+  .tech-stack { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 
   .tech-badge {
     padding: 8px 18px;
@@ -371,17 +397,15 @@
     transition: all 0.2s;
   }
 
-  .tech-badge:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
+  .tech-badge:hover { border-color: var(--accent); color: var(--accent); }
+  .tech-badge.rag { border-color: rgba(108,99,255,0.3); color: #a5a0ff; }
+  .tech-badge.rag:hover { border-color: var(--pinecone); color: var(--pinecone); }
 
   /* Chat Demo */
   .chat-demo {
     background: #111b21;
     border-radius: 16px;
     overflow: hidden;
-    max-width: 420px;
     border: 1px solid var(--border);
   }
 
@@ -413,39 +437,21 @@
     flex-direction: column;
     gap: 12px;
     background: #0b141a;
-    min-height: 300px;
   }
 
   .msg {
-    max-width: 80%;
+    max-width: 85%;
     padding: 10px 14px;
     border-radius: 10px;
     font-size: 13.5px;
     line-height: 1.5;
   }
 
-  .msg-bot {
-    background: #202c33;
-    color: #e9edef;
-    align-self: flex-start;
-    border-bottom-left-radius: 3px;
-  }
+  .msg-bot { background: #202c33; color: #e9edef; align-self: flex-start; border-bottom-left-radius: 3px; }
+  .msg-user { background: #005c4b; color: #e9edef; align-self: flex-end; border-bottom-right-radius: 3px; }
+  .msg-time { font-size: 10px; color: #8696a0; margin-top: 4px; text-align: right; }
 
-  .msg-user {
-    background: #005c4b;
-    color: #e9edef;
-    align-self: flex-end;
-    border-bottom-right-radius: 3px;
-  }
-
-  .msg-time {
-    font-size: 10px;
-    color: #8696a0;
-    margin-top: 4px;
-    text-align: right;
-  }
-
-  /* Demo + desc side by side */
+  /* Demo grid */
   .demo-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -453,12 +459,43 @@
     align-items: start;
   }
 
-  @media (max-width: 768px) {
-    .demo-grid { grid-template-columns: 1fr; }
-    section, .workflow-section { padding: 60px 24px; }
-    .hero { padding: 80px 24px; }
-    .cover-letter { padding: 32px 24px; }
-    .flow { min-width: 600px; }
+  /* Screenshots */
+  .screenshots-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .screenshot-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .screenshot-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(37,211,102,0.3);
+  }
+
+  .screenshot-chat {
+    background: #0b141a;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .screenshot-label {
+    background: var(--surface2);
+    padding: 12px 20px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
   }
 
   /* Animations */
@@ -472,10 +509,8 @@
     transform: translateY(24px);
     transition: opacity 0.6s, transform 0.6s;
   }
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
 
   /* Footer */
   footer {
@@ -493,6 +528,15 @@
     font-size: 20px;
     color: var(--text);
   }
+
+  @media (max-width: 768px) {
+    .demo-grid, .screenshots-grid, .rag-flow { grid-template-columns: 1fr; }
+    section, .workflow-section, .rag-section { padding: 60px 24px; }
+    .hero { padding: 80px 24px; }
+    .cover-letter { padding: 32px 24px; }
+    .flow { min-width: 700px; }
+    footer { padding: 32px 24px; flex-direction: column; gap: 12px; text-align: center; }
+  }
 </style>
 </head>
 <body>
@@ -501,7 +545,7 @@
 <div class="hero">
   <p class="hero-label">AI Automation Portfolio</p>
   <h1>Kimberly<span>Java.</span></h1>
-  <p class="hero-desc">I build practical AI-powered automation workflows that solve real business problems — faster responses, smarter routing, and seamless human handoff.</p>
+  <p class="hero-desc">I build practical AI-powered automation workflows that solve real business problems — faster responses, smarter routing, RAG-powered accuracy, and seamless human handoff.</p>
   <div class="hero-cta">
     <a href="#project" class="btn btn-primary">↓ View My Project</a>
     <a href="#cover-letter" class="btn btn-outline">Read Cover Letter</a>
@@ -519,18 +563,18 @@
       I'm <strong>Kimberly Java</strong>, an AI automation specialist with hands-on experience building practical, production-ready workflows that solve real business problems. I don't just talk about AI — I build with it.
     </p>
     <p>
-      My most recent project is a <span class="highlight">WhatsApp AI Customer Service Bot</span> built entirely on n8n, greenAPI, and the Groq AI API. The bot receives incoming customer messages, processes them through an AI agent with conversation memory, generates intelligent context-aware replies, and automatically escalates complex complaints to a human agent — all in real time.
+      My most recent project is a <span class="highlight">WhatsApp AI Customer Service Bot with RAG</span> built on n8n, greenAPI, Groq AI, Pinecone, and Cohere. The bot receives incoming WhatsApp messages, searches a vector knowledge base for accurate product and policy information, generates intelligent context-aware replies, remembers conversation history per customer, and automatically escalates complex complaints to a human agent — all in real time.
     </p>
     <p>
-      This project demonstrates my ability to <strong>design end-to-end automation workflows</strong>, integrate third-party APIs, implement intelligent routing logic, and build systems that are production-ready and maintainable. I built this from scratch, debugged every issue, and iterated until it worked flawlessly.
+      What sets this apart is the <strong>RAG (Retrieval-Augmented Generation)</strong> system. Instead of relying on the AI's general knowledge, the bot searches a Pinecone vector database first — ensuring every answer is grounded in real store data. This eliminates hallucination and makes the bot trustworthy for real customers.
     </p>
     <p>
-      Beyond technical execution, I understand that AI tools are only valuable when they produce <strong>real business results</strong>. I focus on usefulness, reliability, and building systems that teams can maintain and extend long after handoff.
+      This project demonstrates my ability to <strong>design end-to-end AI workflows</strong>, integrate multiple third-party APIs, implement vector search, and build systems that are production-ready and maintainable. I built this from scratch, debugged every issue, and iterated until it worked flawlessly.
     </p>
     <p>
       I'm a fast learner, highly organized, and comfortable working with ambiguity. I thrive in environments that value execution over theory, and I'm excited to bring that mindset to your team.
     </p>
-    <p>I'd love the opportunity to contribute to your organization. Please find my project demo below.</p>
+    <p>I'd love the opportunity to contribute to your organization. Please find my live project demo below.</p>
     <div class="signature">
       <div class="name">Kimberly Java</div>
       <div class="role">AI Automation Specialist</div>
@@ -542,7 +586,7 @@
 <div class="workflow-section" id="project">
   <div class="workflow-container">
     <p class="section-label">Featured Project</p>
-    <h2 class="section-title fade-in">WhatsApp AI<br>Customer Service Bot</h2>
+    <h2 class="section-title fade-in">WhatsApp AI Customer<br>Service Bot + RAG</h2>
 
     <div class="demo-grid fade-in">
       <!-- Chat Demo -->
@@ -551,39 +595,46 @@
           <div class="chat-avatar">🤖</div>
           <div>
             <div class="chat-name">AI Support Bot</div>
-            <div class="chat-status">● Online</div>
+            <div class="chat-status">● Online — RAG Powered</div>
           </div>
         </div>
         <div class="chat-messages">
-          <div class="msg msg-user">Hi<div class="msg-time">11:40</div></div>
-          <div class="msg msg-bot">Hello! Welcome to our store. How can I assist you with your order or any questions today?<div class="msg-time">11:40</div></div>
-          <div class="msg msg-user">I wanna ask about my order, it doesn't function<div class="msg-time">11:41</div></div>
-          <div class="msg msg-bot">Sorry to hear that! Can you provide your order number so I can look into the issue? I can check the status and assist with repairs or replacements.<div class="msg-time">11:41</div></div>
-          <div class="msg msg-user">I don't think you can help me<div class="msg-time">11:41</div></div>
-          <div class="msg msg-bot">Let me connect you with a human agent who can better assist you. They'll provide a more personalized solution. Would you like me to transfer you now?<div class="msg-time">11:41</div></div>
+          <div class="msg msg-user">How much is the Vitamin C serum?<div class="msg-time">17:05</div></div>
+          <div class="msg msg-bot">The Vitamin C serum is $29.99.<div class="msg-time">17:05</div></div>
+          <div class="msg msg-user">Do you have any product aside from that?<div class="msg-time">17:06</div></div>
+          <div class="msg msg-bot">We have Retinol Night Cream for $34.99, and HydraBoost Moisturizer for $24.99.<div class="msg-time">17:06</div></div>
+          <div class="msg msg-user">I want to order also the retinol and hydraboost, how much in total?<div class="msg-time">17:07</div></div>
+          <div class="msg msg-bot">The total cost is $29.99 + $34.99 + $24.99 = $89.97.<div class="msg-time">17:08</div></div>
+          <div class="msg msg-user">Do you have lip balm?<div class="msg-time">17:09</div></div>
+          <div class="msg msg-bot">Sorry, I don't have information about that. Let me connect you with a human agent who can better assist you.<div class="msg-time">17:09</div></div>
         </div>
       </div>
 
-      <!-- Description -->
+      <!-- Features -->
       <div>
         <p style="font-size:16px; line-height:1.8; color: #ccc; margin-bottom: 24px;">
-          A fully functional AI-powered WhatsApp customer service bot that handles real conversations, remembers context, and escalates to humans when needed.
+          A production-ready WhatsApp AI bot that answers from a real knowledge base, calculates totals, remembers context, and knows when to hand off to humans.
         </p>
         <div class="features" style="grid-template-columns: 1fr; margin-top: 0; gap: 16px;">
           <div class="feature-card">
+            <div class="feature-icon">🗄️</div>
+            <div class="feature-title">RAG — Knowledge Base Search</div>
+            <div class="feature-desc">Searches Pinecone vector database before every reply — answers are always grounded in real store data, never hallucinated.</div>
+          </div>
+          <div class="feature-card">
             <div class="feature-icon">🧠</div>
             <div class="feature-title">Conversation Memory</div>
-            <div class="feature-desc">Remembers past messages per customer using Session-based Simple Memory — no repeated greetings.</div>
+            <div class="feature-desc">Remembers the full conversation per customer — calculates totals, references past messages, no repeated greetings.</div>
           </div>
           <div class="feature-card">
             <div class="feature-icon">🔀</div>
             <div class="feature-title">Smart Human Escalation</div>
-            <div class="feature-desc">Automatically routes complex complaints to a human agent when the AI cannot confidently resolve the issue.</div>
+            <div class="feature-desc">Automatically routes to a human agent when the AI can't confidently answer from the knowledge base.</div>
           </div>
           <div class="feature-card">
             <div class="feature-icon">⚡</div>
-            <div class="feature-title">Real-time Responses</div>
-            <div class="feature-desc">Powered by Groq's ultra-fast LLM API — replies in seconds, not minutes.</div>
+            <div class="feature-title">Real-time via Groq</div>
+            <div class="feature-desc">Powered by Groq's ultra-fast LLM — replies in seconds using llama-3.3-70b-versatile model.</div>
           </div>
         </div>
       </div>
@@ -626,6 +677,8 @@
               <div style="display:flex; align-items:center; gap:8px; margin-top:8px;">
                 <div class="node-box node-ai" style="width:90px; font-size:10px;">🤖 AI Agent<br>+ Memory</div>
                 <span style="color:var(--muted);">→</span>
+                <div class="node-box node-rag" style="width:90px; font-size:10px;">🗄️ Pinecone<br>RAG Search</div>
+                <span style="color:var(--muted);">→</span>
                 <div class="node-box node-send" style="width:90px; font-size:10px;">📤 Send Reply<br>via greenAPI</div>
               </div>
             </div>
@@ -642,47 +695,160 @@
         <span class="tech-badge">Groq API</span>
         <span class="tech-badge">greenAPI</span>
         <span class="tech-badge">WhatsApp</span>
+        <span class="tech-badge rag">Pinecone</span>
+        <span class="tech-badge rag">RAG</span>
+        <span class="tech-badge rag">Cohere Embeddings</span>
+        <span class="tech-badge rag">Vector Search</span>
         <span class="tech-badge">AI Agent Node</span>
         <span class="tech-badge">Simple Memory</span>
         <span class="tech-badge">Webhook</span>
         <span class="tech-badge">REST API</span>
-        <span class="tech-badge">JSON</span>
       </div>
     </div>
   </div>
 </div>
 
+<!-- RAG SECTION -->
+<div class="rag-section">
+  <div class="rag-container">
+    <p class="section-label" style="color: #a5a0ff;">RAG System</p>
+    <h2 class="section-title fade-in">How the Knowledge Base<br>Powers Accurate Answers</h2>
+    <p style="color: var(--muted); font-size: 16px; max-width: 600px; line-height: 1.7;">
+      Instead of relying on the AI's general knowledge, every reply is grounded in real store data stored in Pinecone — eliminating hallucination completely.
+    </p>
+
+    <div class="rag-flow fade-in">
+      <div class="rag-step">
+        <div class="rag-step-num">Step 01</div>
+        <div class="rag-step-icon">💬</div>
+        <div class="rag-step-title">Customer Sends Message</div>
+        <div class="rag-step-desc">WhatsApp message received via greenAPI webhook and extracted by n8n.</div>
+      </div>
+      <div class="rag-step">
+        <div class="rag-step-num">Step 02</div>
+        <div class="rag-step-icon">🔍</div>
+        <div class="rag-step-title">Pinecone Vector Search</div>
+        <div class="rag-step-desc">Message is converted to a vector using Cohere embeddings and searched against the knowledge base.</div>
+      </div>
+      <div class="rag-step">
+        <div class="rag-step-num">Step 03</div>
+        <div class="rag-step-icon">📚</div>
+        <div class="rag-step-title">Retrieve Relevant Data</div>
+        <div class="rag-step-desc">Top matching records returned — products, FAQs, shipping and return policies.</div>
+      </div>
+      <div class="rag-step">
+        <div class="rag-step-num">Step 04</div>
+        <div class="rag-step-icon">🤖</div>
+        <div class="rag-step-title">AI Generates Reply</div>
+        <div class="rag-step-desc">Groq AI uses ONLY the retrieved data to generate an accurate, grounded response sent back via WhatsApp.</div>
+      </div>
+    </div>
+
+    <!-- Knowledge Base Contents -->
+    <div style="margin-top: 60px;" class="fade-in">
+      <p class="section-label" style="color: #a5a0ff;">Knowledge Base</p>
+      <div class="features" style="margin-top: 24px;">
+        <div class="feature-card" style="border-color: rgba(108,99,255,0.2);">
+          <div class="feature-icon">💄</div>
+          <div class="feature-title">5 Products</div>
+          <div class="feature-desc">Glow Serum Vitamin C, HydraBoost Moisturizer, Retinol Night Cream, SPF 50 Sunscreen Gel, Gentle Foaming Cleanser — with prices, descriptions, and ingredients.</div>
+        </div>
+        <div class="feature-card" style="border-color: rgba(108,99,255,0.2);">
+          <div class="feature-icon">❓</div>
+          <div class="feature-title">5 FAQs</div>
+          <div class="feature-desc">Shipping times, return policy, cruelty-free status, order tracking, and skincare routine recommendations.</div>
+        </div>
+        <div class="feature-card" style="border-color: rgba(108,99,255,0.2);">
+          <div class="feature-icon">📋</div>
+          <div class="feature-title">3 Policies</div>
+          <div class="feature-desc">Shipping policy, return policy, and privacy policy — all searchable and retrievable in real time.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REAL SCREENSHOTS -->
+<section id="screenshots">
+  <p class="section-label">Live Demo</p>
+  <h2 class="section-title fade-in">Real Conversations<br>From the Live Bot</h2>
+  <p style="color: var(--muted); font-size: 16px; margin-bottom: 0; line-height: 1.7;">These are actual WhatsApp conversations from the working bot — not mockups.</p>
+
+  <div class="screenshots-grid fade-in">
+    <!-- Screenshot 1 -->
+    <div class="screenshot-card">
+      <div class="screenshot-chat">
+        <div class="msg msg-user" style="max-width:100%;">How much is the Vitamin C serum?<div class="msg-time">17:05</div></div>
+        <div class="msg msg-bot" style="max-width:100%;">The Vitamin C serum is $29.99.<div class="msg-time">17:05</div></div>
+        <div class="msg msg-user" style="max-width:100%;">Do you have any product aside from that?<div class="msg-time">17:06</div></div>
+        <div class="msg msg-bot" style="max-width:100%;">We have Retinol Night Cream for $34.99, and HydraBoost Moisturizer for $24.99.<div class="msg-time">17:06</div></div>
+      </div>
+      <div class="screenshot-label">✅ Accurate product info from Pinecone</div>
+    </div>
+
+    <!-- Screenshot 2 -->
+    <div class="screenshot-card">
+      <div class="screenshot-chat">
+        <div class="msg msg-user" style="max-width:100%;">I want to order the retinol and hydraboost, how much in total?<div class="msg-time">17:07</div></div>
+        <div class="msg msg-bot" style="max-width:100%;">The total cost is $29.99 + $34.99 + $24.99 = $89.97.<div class="msg-time">17:08</div></div>
+      </div>
+      <div class="screenshot-label">✅ Memory — remembers previous products mentioned</div>
+    </div>
+
+    <!-- Screenshot 3 -->
+    <div class="screenshot-card">
+      <div class="screenshot-chat">
+        <div class="msg msg-user" style="max-width:100%;">Do you have lip balm?<div class="msg-time">17:09</div></div>
+        <div class="msg msg-bot" style="max-width:100%;">Sorry, I don't have information about that. Let me connect you with a human agent who can better assist you.<div class="msg-time">17:09</div></div>
+      </div>
+      <div class="screenshot-label">✅ Honest — refuses to hallucinate unknown products</div>
+    </div>
+
+    <!-- Screenshot 4 -->
+    <div class="screenshot-card">
+      <div class="screenshot-chat">
+        <div class="msg msg-user" style="max-width:100%;">I wanna ask about my order, it doesn't function<div class="msg-time">11:41</div></div>
+        <div class="msg msg-bot" style="max-width:100%;">Sorry to hear that! Can you provide your order number so I can look into the issue?<div class="msg-time">11:41</div></div>
+        <div class="msg msg-user" style="max-width:100%;">I don't think you can help me<div class="msg-time">11:41</div></div>
+        <div class="msg msg-bot" style="max-width:100%;">Let me connect you with a human agent who can better assist you.<div class="msg-time">11:41</div></div>
+      </div>
+      <div class="screenshot-label">✅ Human escalation — knows its limits</div>
+    </div>
+  </div>
+</section>
+
 <!-- SCREENING TASK -->
-<section id="screening">
+<section id="screening" style="border-top: 1px solid var(--border);">
   <p class="section-label">Screening Task Response</p>
   <h2 class="section-title fade-in">Business Problem<br>& AI Solution</h2>
   <div class="cover-letter fade-in">
     <p><strong>1. Business Problem</strong><br>
-    E-commerce customer service teams struggle to respond to WhatsApp inquiries quickly and consistently, leading to delayed responses, missed follow-ups, and frustrated customers — especially during peak hours.</p>
+    E-commerce customer service teams struggle to respond to WhatsApp inquiries quickly and consistently. Generic AI bots hallucinate product details, leading to customer distrust — especially around pricing and product availability.</p>
     <p><strong>2. How I Used AI to Improve It</strong><br>
-    I built an automated WhatsApp customer service bot that handles common inquiries instantly using a Groq-powered AI agent with conversation memory, while routing complex complaints to a human agent when needed.</p>
+    I built a WhatsApp customer service bot with RAG (Retrieval-Augmented Generation). The bot searches a Pinecone vector database of real store data before every reply, ensuring accurate answers grounded in actual product info — not AI guesswork.</p>
     <p><strong>3. Tools Used</strong><br>
-    <span class="highlight">n8n</span> for workflow automation — <span class="highlight">Groq API</span> for AI responses — <span class="highlight">greenAPI</span> for WhatsApp integration — <span class="highlight">Simple Memory</span> for per-customer conversation history.</p>
+    <span class="highlight">n8n</span> — workflow automation · <span class="highlight">Groq API</span> — AI responses · <span class="highlight">greenAPI</span> — WhatsApp integration · <span class="highlight">Pinecone</span> — vector database · <span class="highlight">Cohere</span> — text embeddings · <span class="highlight">Simple Memory</span> — conversation history</p>
     <p><strong>4. Workflow</strong><br>
-    Incoming WhatsApp message → Extract customer message + chatId → AI Agent generates context-aware reply → IF human flag is set → route to human agent → ELSE → send AI reply back via WhatsApp.</p>
+    Incoming WhatsApp message → Extract customer message → AI Agent searches Pinecone knowledge base → Generates grounded reply → IF human flag set → route to human → ELSE → send reply via WhatsApp.</p>
     <p><strong>5. Risk & Mitigation</strong><br>
-    The AI may occasionally give incorrect or misleading product information. To handle this, I built a human escalation node — if the AI detects it cannot confidently answer, it flags the conversation and routes it to a human agent automatically.</p>
+    The AI could still occasionally give incomplete answers if the knowledge base lacks coverage. To handle this, the system is instructed to say "I don't have information about that" and escalate to a human agent — rather than guess or hallucinate. The knowledge base can be updated at any time by upserting new records to Pinecone.</p>
+    <div class="signature">
+      <div class="name">Kimberly Java</div>
+      <div class="role">AI Automation Specialist</div>
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-name">Kimberly Java</div>
-  <div>AI Automation Specialist · Built with n8n + Groq</div>
+  <div>AI Automation Specialist · n8n · Groq · Pinecone · RAG · WhatsApp</div>
 </footer>
 
 <script>
-  // Intersection observer for fade-in
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(el => {
-      if (el.isIntersecting) {
-        el.target.classList.add('visible');
-      }
+      if (el.isIntersecting) el.target.classList.add('visible');
     });
   }, { threshold: 0.1 });
 
